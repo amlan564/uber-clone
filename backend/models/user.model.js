@@ -30,6 +30,11 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// use of select: false in password
+// 1. Security: Prevents sensitive information like passwords from 
+//              being accidentally exposed in query results.
+// 2. Efficiency: Excludes unnecessary data when it's not required.
+
 userSchema.methods.generateAuthToken = function () {
   const token = jwt.sign({ _id: this._id }, process.env.SECRET_KEY);
   return token;
