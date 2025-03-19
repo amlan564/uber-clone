@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
 // 2. Efficiency: Excludes unnecessary data when it's not required.
 
 userSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign({ _id: this._id }, process.env.SECRET_KEY);
+  const token = jwt.sign({ _id: this._id }, process.env.SECRET_KEY, { expiresIn: "24h" });
   return token;
 };
 
